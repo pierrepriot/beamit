@@ -58,6 +58,23 @@ color: #363636;
 				</div>		
 				{% endfor %}        
              </div>
+             
+             
+             <div class="panel">
+				<p class="panel-heading">
+				   Connect with <strong>"{{artist}}"</strong>
+				</p>                    
+                            
+              {% for item in socials %}             	
+                <div class="panel-block">
+					<div class="content is-medium">
+						<span class="icon"><i class="{{item.class}}"></i></span>
+                       
+                        <a href="{{item.url}}" class="is-info"> {{item.name}}</a>
+					</div>
+				</div>		
+				{% endfor %}        
+             </div>
        </div>
     </div>
 </section>

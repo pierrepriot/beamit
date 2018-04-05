@@ -15,11 +15,20 @@ $classes = array(
 				'spotify' => 'fab fa-spotify',
 				'deezer' => 'fas fa-signal',
 				'youtube' => 'fab fa-youtube',
+				'facebook' => 'fab fa-facebook',
+				'twitter' => 'fab fa-twitter-square',
+				'instagram' => 'fab fa-instagram',
 );
 
 foreach($o->services as $k => $aVal){
 	if (isset($classes[strtolower($aVal['name'])])){		
 		$o->services[$k]['class']=$classes[strtolower($aVal['name'])];		
+	}	
+}
+
+foreach($o->socials as $k => $aVal){
+	if (isset($classes[strtolower($aVal['name'])])){		
+		$o->socials[$k]['class']=$classes[strtolower($aVal['name'])];		
 	}	
 }
 
@@ -32,6 +41,6 @@ $twig = new Twig_Environment($loader, array(
 ));
 
 $template = $twig->load('index.html');
-echo $template->render(array('ogurl' => $_SERVER['REQUEST_URI'], 'artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services));
+echo $template->render(array('ogurl' => $_SERVER['REQUEST_URI'], 'artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services, 'socials' => $o->socials));
 
 ?>
