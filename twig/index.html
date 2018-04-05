@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="theme-color" content="#3273dc">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <title>{{artist}} - {{release}}</title>
+    <style>
+		a  {
+color: #363636;
+}
+		
+	</style>
+</head>
+<body>
+<section class="hero is-info is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">{{artist}} - {{release}}</h1>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="panel">                    
+                    <div class="panel-block">
+                        <div class="content">
+                            <p>
+                               <img src="{{img}}"  alt="{{artist}} - {{release}}">                               
+                            </p>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">              
+              {% for item in services %}              
+              	<div class="panel">
+                    <p class="panel-heading">
+                        <span class="icon"><i class="{{item.class}}"></i></span>
+                       
+                        <a href="{{item.url}}" class="is-info"> {{item.name}}</a>
+                    </p>                    
+                </div>				
+				{% endfor %}        
+             </div>
+       </div>
+    </div>
+</section>
+</body>
+</html>    

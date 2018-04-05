@@ -3,5 +3,11 @@ artist: An Early Bird
 release: Warning Signs
 img: img/warningsigns.jpg
 services:
-  Bandcamp: https://deadbees.bandcamp.com
-  Deezer: https://www.deezer.com/fr/album/59342682
+    - name: Bandcamp
+      url: https://deadbees.bandcamp.com
+    - name: Deezer
+      url: https://www.deezer.com/fr/album/59342682
+    - name: Spotify
+      url: https://www.deezer.com/fr/album/59342682
+    - name: Apple
+      url: https://www.deezer.com/fr/album/59342682
