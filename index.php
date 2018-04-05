@@ -35,9 +35,11 @@ foreach($o->socials as $k => $aVal){
 require_once 'vendor/autoload.php';
 
 $loader = new Twig_Loader_Filesystem('twig');
+
+
 $twig = new Twig_Environment($loader, array(
-    //'cache' => 'cache',
-	'cache' => false
+    'cache' => 'cache',
+	//'cache' => false
 ));
 
 $template = $twig->load('index.html');
