@@ -7,25 +7,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <title>{{artist}} - {{release}}</title>
+    <meta property="og:title" content="{{release}}" />
+	<meta property="og:type" content="music.album" />
+	<meta property="og:url" content="{{ogurl}}" />
+	<meta property="og:image" content="{{img}}" />
+    <meta property="music:album" content="{{release}}" />
+    <meta property="music:musician" content="{{artist}}" />
     <style>
 		a  {
 color: #363636;
 }
-		
+
 	</style>
 </head>
 <body>
-<section class="hero is-info is-bold">
+<section class="hero is-dark is-bold">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title">{{artist}} - {{release}}</h1>
+            <h1 class="title">{{artist}} - "{{release}}"</h1>
         </div>
     </div>
 </section>
 <section class="section">
     <div class="container">
         <div class="columns">
-            <div class="column">
+            <div class="column is-two-thirds">
                 <div class="panel">                    
                     <div class="panel-block">
                         <div class="content">
@@ -36,15 +42,20 @@ color: #363636;
                     </div>
                 </div>
             </div>
-            <div class="column">              
-              {% for item in services %}              
-              	<div class="panel">
-                    <p class="panel-heading">
-                        <span class="icon"><i class="{{item.class}}"></i></span>
+            <div class="column">  
+             <div class="panel">
+				<p class="panel-heading">
+				   Get <strong>"{{release}}"</strong> from your favorite service
+				</p>                    
+                            
+              {% for item in services %}             	
+                <div class="panel-block">
+					<div class="content is-medium">
+						<span class="icon"><i class="{{item.class}}"></i></span>
                        
                         <a href="{{item.url}}" class="is-info"> {{item.name}}</a>
-                    </p>                    
-                </div>				
+					</div>
+				</div>		
 				{% endfor %}        
              </div>
        </div>

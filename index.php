@@ -14,6 +14,7 @@ $classes = array(
 				'apple' => 'fab fa-apple',
 				'spotify' => 'fab fa-spotify',
 				'deezer' => 'fas fa-signal',
+				'youtube' => 'fab fa-youtube',
 );
 
 foreach($o->services as $k => $aVal){
@@ -31,6 +32,6 @@ $twig = new Twig_Environment($loader, array(
 ));
 
 $template = $twig->load('index.html');
-echo $template->render(array('artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services));
+echo $template->render(array('ogurl' => $_SERVER['REQUEST_URI'], 'artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services));
 
 ?>
