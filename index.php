@@ -1,6 +1,12 @@
 <?php
-$o->artist='An Early Bird';
-$o->release='Warning Signs';
+$yaml =  'conf.yml';
+
+/* ------------------------------------------------ */
+	
+$o = (object)yaml_parse_file ($yaml);
+$o->services=(object)($o->services);
+
+var_dump($o);
 
 
 ?><!doctype html>
@@ -36,7 +42,7 @@ color: #363636;
                     <div class="panel-block">
                         <div class="content">
                             <p>
-                               <img src="img/warningsigns.jpg"  alt="<?php echo $o->artist.' - '.$o->release; ?>">                               
+                               <img src="<?php echo $o->img; ?>"  alt="<?php echo $o->artist.' - '.$o->release; ?>">                               
                             </p>
                            
                         </div>
@@ -70,7 +76,7 @@ color: #363636;
                 <div class="panel">
                     <p class="panel-heading">
                         <span class="icon"><i class="fas fa-signal"></i></span>
-							<a href="https://www.deezer.com/fr/album/59342682" class="is-info">Deezer</a>
+							<a href="<?php echo $o->services->Deezer; ?>" class="is-info">Deezer</a>
                     </p>
                 </div>
        
