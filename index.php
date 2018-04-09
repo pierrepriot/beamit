@@ -32,17 +32,24 @@ foreach($o->socials as $k => $aVal){
 	}	
 }
 
+if ( $_SERVER['HTTPS'] != null){
+	$o->baseurl = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+}
+else{
+	$o->baseurl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+}
+
 require_once 'vendor/autoload.php';
 
 $loader = new Twig_Loader_Filesystem('twig');
 
 
 $twig = new Twig_Environment($loader, array(
-    'cache' => 'cache',
-	//'cache' => false
+    //'cache' => 'cache',
+	'cache' => false
 ));
 
 $template = $twig->load('index.html');
-echo $template->render(array('ogurl' => $_SERVER['REQUEST_URI'], 'artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services, 'socials' => $o->socials));
+echo $template->render(array('ogurl' => $_SERVER['REQUEST_URI'], 'artist' => $o->artist, 'release' => $o->release, 'img' => $o->img, 'services' => $o->services, 'socials' => $o->socials, 'twitternic' => $o->twitternic, 'baseurl' => $o->baseurl));
 
 ?>

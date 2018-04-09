@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
     <title>{{artist}} - {{release}}</title>
-    <meta property="og:title" content="{{release}}" />
-	<meta property="og:type" content="music.album" />
-	<meta property="og:url" content="{{ogurl}}" />
-	<meta property="og:image" content="{{img}}" />
-    <meta property="music:album" content="{{release}}" />
-    <meta property="music:musician" content="{{artist}}" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@{{twitternic}}">
+    <meta name="twitter:creator" content="@{{twitternic}}">
+    <meta name="twitter:title" content="{{artist}} - {{release}}">
+    <meta name="twitter:description" content="Get {{release}} by {{artist}} from your favorite service">
+    <meta name="twitter:image" content="{{baseurl}}{{img}}">
+    <meta property="og:title" content="{{release}}">
+	<meta property="og:type" content="music.album">
+	<meta property="og:url" content="{{ogurl}}">
+	<meta property="og:image" content="{{img}}">
+    <meta property="music:album" content="{{release}}">
+    <meta property="music:musician" content="{{artist}}">
+	<link rel="image_src" href="{{img}}">
     <style>
 		a  {
 color: #363636;
