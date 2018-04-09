@@ -1,11 +1,9 @@
 <?php
-$yaml =  'conf.yml';
-
-/* ------------------------------------------------ */
 
 class BeamIt
 {
     private $o;
+	private $yaml = 'conf.yml';
 	private $classes = array(
 						'bandcamp' => 'fas fa-bold',
 						'apple' => 'fab fa-apple',
@@ -17,8 +15,12 @@ class BeamIt
 						'instagram' => 'fab fa-instagram',
 		);
 
-	public function __construct($yaml) {
-		$this->conf = (object)yaml_parse_file ($yaml);
+	public function __construct() {
+		if(is_file(basename($_SERVER['REQUEST_URI']).'.yml')){			
+			$this->yaml = basename($_SERVER['REQUEST_URI']).'.yml';
+		}		
+		
+		$this->conf = (object)yaml_parse_file ($this->yaml);
 		
 		foreach($this->conf->services as $k => $aVal){
 			if (isset($this->classes[strtolower($aVal['name'])])){		
@@ -55,7 +57,7 @@ class BeamIt
 	}
 }
 	
-$o = new BeamIt($yaml);
+$o = new BeamIt();
 
 require_once 'vendor/autoload.php';
 
