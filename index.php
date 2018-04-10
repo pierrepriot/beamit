@@ -16,11 +16,7 @@ class BeamIt
 		);
 
 	public function __construct() {
-		if(is_file(basename($_SERVER['REQUEST_URI']).'.yml')){			
-			$this->yaml = basename($_SERVER['REQUEST_URI']).'.yml';
-		}		
-		
-		$this->conf = (object)yaml_parse_file ($this->yaml);
+		$this->loadConf();
 		
 		foreach($this->conf->services as $k => $aVal){
 			if (isset($this->classes[strtolower($aVal['name'])])){		
@@ -36,6 +32,17 @@ class BeamIt
 
 		$this->setBaseUrl();
 	 }
+	
+	private function loadConf(){
+		
+		$slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
+		
+		if(is_file($slug.'.yml')){			
+			$this->yaml = $slug.'.yml';
+		}		
+		
+		$this->conf = (object)yaml_parse_file ($this->yaml);
+	}
 	
 	private function setBaseUrl(){
 		if ( $_SERVER['HTTPS'] != null){
