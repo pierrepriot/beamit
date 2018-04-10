@@ -13,6 +13,8 @@ class BeamIt
 						'facebook' => 'fab fa-facebook',
 						'twitter' => 'fab fa-twitter-square',
 						'instagram' => 'fab fa-instagram',
+						'mixcloud' => 'fab fa-mixcloud',
+						'openwhyd' => 'far fa-dot-circle',
 		);
 
 	public function __construct() {
