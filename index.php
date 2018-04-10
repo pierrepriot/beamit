@@ -3,7 +3,7 @@
 class BeamIt
 {
     private $o;
-	private $yaml = 'conf.yml';
+	private $yaml = './conf/conf.yml';
 	private $classes = array(
 						'bandcamp' => 'fas fa-bold',
 						'apple' => 'fab fa-apple',
@@ -39,8 +39,8 @@ class BeamIt
 		
 		$slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
 		
-		if(is_file($slug.'.yml')){			
-			$this->yaml = $slug.'.yml';
+		if(is_file('./conf/'.$slug.'.yml')){			
+			$this->yaml = './conf/'.$slug.'.yml';
 		}		
 		
 		$this->conf = (object)yaml_parse_file ($this->yaml);
