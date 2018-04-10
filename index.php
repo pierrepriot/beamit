@@ -2,8 +2,13 @@
 
 class BeamIt
 {
-    private $o;
-	private $yaml = './conf/conf.yml';
+    // main configuration storage object
+	private $conf; 
+	
+	// default/sample configuration file
+	private $yaml = './conf/conf.yml'; 
+	
+	// mapping array for services and font awesome css classes
 	private $classes = array(
 						'bandcamp' => 'fas fa-bold',
 						'apple' => 'fab fa-apple',
@@ -16,7 +21,8 @@ class BeamIt
 						'mixcloud' => 'fab fa-mixcloud',
 						'openwhyd' => 'far fa-dot-circle',
 		);
-
+	
+	// class constructor
 	public function __construct() {
 		$this->loadConf();
 		
@@ -35,6 +41,8 @@ class BeamIt
 		$this->setBaseUrl();
 	 }
 	
+	// matches the request URl with existing yaml conf file 
+	// and loads configuration 
 	private function loadConf(){
 		
 		$slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
@@ -46,6 +54,7 @@ class BeamIt
 		$this->conf = (object)yaml_parse_file ($this->yaml);
 	}
 	
+	// sets base url depending on http/https protocol
 	private function setBaseUrl(){
 		if ( $_SERVER['HTTPS'] != null){
 			$this->conf->baseurl = 'https://'.$_SERVER['HTTP_HOST'].'/';
@@ -55,7 +64,7 @@ class BeamIt
 		}		
 	}
 	
-	
+	// returns twig friendly var array
 	public function getConf(){
 		
 		return array(
