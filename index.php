@@ -34,13 +34,17 @@ class BeamIt
 			}	
 		}
 
+		$this->setBaseUrl();
+	 }
+	
+	private function setBaseUrl(){
 		if ( $_SERVER['HTTPS'] != null){
-			$this->conf->baseurl = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			$this->conf->baseurl = 'https://'.$_SERVER['HTTP_HOST'].'/';
 		}
 		else{
-			$this->conf->baseurl = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		}
-	 }
+			$this->conf->baseurl = 'http://'.$_SERVER['HTTP_HOST'].'/';
+		}		
+	}
 	
 	
 	public function getConf(){
