@@ -21,6 +21,7 @@ class BeamIt
 						'mixcloud' => 'fab fa-mixcloud',
 						'openwhyd' => 'far fa-dot-circle',
 						'amazon' => 'fab fa-amazon',
+						'vinyl' =>  'fas fa-dot-circle',
 		);
 	
 	private $slug;
