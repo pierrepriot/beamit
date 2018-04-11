@@ -20,6 +20,7 @@ class BeamIt
 						'instagram' => 'fab fa-instagram',
 						'mixcloud' => 'fab fa-mixcloud',
 						'openwhyd' => 'far fa-dot-circle',
+						'amazon' => 'fab fa-amazon',
 		);
 	
 	// class constructor
