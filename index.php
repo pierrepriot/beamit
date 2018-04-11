@@ -23,6 +23,8 @@ class BeamIt
 						'amazon' => 'fab fa-amazon',
 		);
 	
+	private $slug;
+	
 	// class constructor
 	public function __construct() {
 		$this->loadConf();
@@ -46,10 +48,10 @@ class BeamIt
 	// and loads configuration 
 	private function loadConf(){
 		
-		$slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
+		$this->slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
 		
-		if(is_file('./conf/'.$slug.'.yml')){			
-			$this->yaml = './conf/'.$slug.'.yml';
+		if(is_file('./conf/'.$this->slug.'.yml')){			
+			$this->yaml = './conf/'.$this->slug.'.yml';
 		}		
 		
 		$this->conf = (object)yaml_parse_file ($this->yaml);
@@ -69,7 +71,7 @@ class BeamIt
 	public function getConf(){
 		
 		return array(
-			'ogurl' => $_SERVER['REQUEST_URI'], 
+			'ogurl' => $this->conf->baseurl.$this->slug, 
 			'artist' => $this->conf->artist, 
 			'release' => $this->conf->release, 
 			'img' => $this->conf->img, 

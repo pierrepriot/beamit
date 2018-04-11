@@ -13,6 +13,8 @@ services:
       url: https://geo.itunes.apple.com/fr/album/id1361251893?at=1l3v9Tx&app=itunes
     - name: Youtube
       url: https://www.youtube.com/watch?v=hcrXYzooJwo
+    - name: Amazon
+      url: https://www.amazon.com/Warning-Signs/dp/B07BK9M9HQ
 socials:
     - name: Facebook
       url: https://www.facebook.com/anearlybirdmusic
