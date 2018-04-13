@@ -28,6 +28,9 @@ class BeamIt
 	
 	// class constructor
 	public function __construct() {
+		
+		$this->setSlug();
+		
 		$this->loadConf();
 		
 		foreach($this->conf->services as $k => $aVal){
@@ -45,11 +48,16 @@ class BeamIt
 		$this->setBaseUrl();
 	 }
 	
+	private function setSlug(){
+		
+		$this->slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
+	}
+	
 	// matches the request URl with existing yaml conf file 
 	// and loads configuration 
 	private function loadConf(){
 		
-		$this->slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
+		
 		
 		if(is_file('./conf/'.$this->slug.'.yml')){			
 			$this->yaml = './conf/'.$this->slug.'.yml';
@@ -68,18 +76,31 @@ class BeamIt
 		}		
 	}
 	
+	// returns twig template depending on slug
+	public function getTemplate(){
+		
+		if ($this->slug == 'manifest.json'){
+			return 'manifest.json';
+		}
+		else{
+			return 'index.html';
+		}		
+	}
+	
 	// returns twig friendly var array
 	public function getConf(){
 		
 		return array(
 			'ogurl' => $this->conf->baseurl.$this->slug, 
+			'slug' => $this->slug, 
 			'artist' => $this->conf->artist, 
 			'release' => $this->conf->release, 
 			'img' => $this->conf->img, 
 			'services' => $this->conf->services, 
 			'socials' => $this->conf->socials, 
 			'twitternic' => $this->conf->twitternic, 
-			'baseurl' => $this->conf->baseurl);		
+			'baseurl' => $this->conf->baseurl
+		);		
 	}
 }
 	
@@ -92,5 +113,5 @@ $twig = new Twig_Environment($loader, array(
     //'cache' => 'cache',
 	'cache' => false
 ));
-$template = $twig->load('index.html');
+$template = $twig->load($o->getTemplate());
 echo $template->render($o->getConf());
