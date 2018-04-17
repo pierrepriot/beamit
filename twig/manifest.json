@@ -19,5 +19,5 @@
     }
   ],
   "start_url": "{{slug}}",
-  "display": "standalone
+  "display": "standalone"
 }
