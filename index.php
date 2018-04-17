@@ -55,12 +55,10 @@ class BeamIt
 	
 	// matches the request URl with existing yaml conf file 
 	// and loads configuration 
-	private function loadConf(){
+	private function loadConf(){		
 		
-		
-		
-		if(is_file('./conf/'.$this->slug.'.yml')){			
-			$this->yaml = './conf/'.$this->slug.'.yml';
+		if(is_file('./conf/'.str_replace('.json', '', $this->slug).'.yml')){			
+			$this->yaml = './conf/'.str_replace('.json', '', $this->slug).'.yml';
 		}		
 		
 		$this->conf = (object)yaml_parse_file ($this->yaml);
@@ -79,7 +77,7 @@ class BeamIt
 	// returns twig template depending on slug
 	public function getTemplate(){
 		
-		if ($this->slug == 'manifest.json'){
+		if (preg_match('/.+\.json$/si', $this->slug)){
 			return 'manifest.json';
 		}
 		else{
@@ -92,7 +90,7 @@ class BeamIt
 		
 		return array(
 			'ogurl' => $this->conf->baseurl.$this->slug, 
-			'slug' => $this->slug, 
+			'slug' => str_replace('.json', '', $this->slug), 
 			'artist' => $this->conf->artist, 
 			'release' => $this->conf->release, 
 			'img' => $this->conf->img, 
