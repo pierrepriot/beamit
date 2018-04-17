@@ -8,14 +8,18 @@ if (workbox) {
   console.log(`Boo! Workbox didn't load 😬`);
 }
 
+//console.log(location.href);
+//console.log(new RegExp(location.href));
+
 workbox.routing.registerRoute(
-  // Cache CSS files
-  /.*\.css/,
-  // Use cache but update in the background ASAP
-  workbox.strategies.staleWhileRevalidate({
-    // Use a custom cache name
-    cacheName: 'css-cache',
-  })
+  //new RegExp(location.href),
+  /.*\.js|.*\.json|\/[a-z]+$/,
+  workbox.strategies.networkFirst()
+);
+
+workbox.routing.registerRoute(
+  location.href,
+  workbox.strategies.networkFirst()
 );
 
 workbox.routing.registerRoute(
