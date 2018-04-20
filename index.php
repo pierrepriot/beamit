@@ -22,6 +22,7 @@ class BeamIt
 						'openwhyd' => 'far fa-dot-circle',
 						'amazon' => 'fab fa-amazon',
 						'vinyl' =>  'fas fa-dot-circle',
+						'google play' => 'fab fa-google-play',
 		);
 	
 	private $slug;
