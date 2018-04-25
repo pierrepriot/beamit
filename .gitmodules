@@ -1,0 +1,3 @@
+[submodule "tarteaucitron"]
+	path = tarteaucitron
+	url = https://github.com/AmauriC/tarteaucitron.js.git

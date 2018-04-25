@@ -89,7 +89,8 @@ class BeamIt
 	// returns twig friendly var array
 	public function getConf(){
 		
-		return array(
+		$aTwigVars = array(
+			'tartebypass' => 'false',
 			'ogurl' => $this->conf->baseurl.$this->slug, 
 			'slug' => str_replace('.json', '', $this->slug), 
 			'artist' => $this->conf->artist, 
@@ -100,6 +101,15 @@ class BeamIt
 			'twitternic' => $this->conf->twitternic, 
 			'baseurl' => $this->conf->baseurl
 		);		
+		
+		if(function_exists('geoip_continent_code_by_name')){
+			$continent = geoip_continent_code_by_name($_SERVER['REMOTE_ADDR']);		
+			if ($continent != 'EU') {
+				$aTwigVars['tartebypass']='true';
+			}			
+		}
+		
+		return $aTwigVars;
 	}
 }
 	
