@@ -22,7 +22,7 @@ class BeamIt
 						'openwhyd' => 'far fa-dot-circle',
 						'amazon' => 'fab fa-amazon',
 						'vinyl' =>  'fas fa-dot-circle',
-						'cd' =>  'fal fa-dot-circle',		
+						'cd' =>  'far fa-dot-circle',		
 						'google play' => 'fab fa-google-play',
 		);
 	
