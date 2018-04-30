@@ -1,0 +1,27 @@
+---
+artist: An Early Bird
+release: Warning Signs
+img: img/warningsigns.jpg
+services:
+    - name: Bandcamp
+      url: https://deadbees.bandcamp.com
+    - name: Deezer
+      url: https://www.deezer.com/fr/album/59342682
+    - name: Spotify
+      url: http://open.spotify.com/album/5D0oMkoPYmifmeDKTflMdp
+    - name: Apple
+      url: https://geo.itunes.apple.com/fr/album/id1361251893?at=1l3v9Tx&app=itunes
+    - name: Youtube
+      url: https://www.youtube.com/watch?v=hcrXYzooJwo
+    - name: Amazon
+      url: https://www.amazon.com/Warning-Signs/dp/B07BK9M9HQ
+socials:
+    - name: Facebook
+      url: https://www.facebook.com/anearlybirdmusic
+    - name: Twitter
+      url: https://twitter.com/_anearlybird_
+    - name: Instagram
+      url: https://www.instagram.com/anearlybirdofficial/
+    - name: Youtube
+      url: https://www.youtube.com/channel/UCAW08x6aIjIBztf9u8chmHA
+twitternic: deadbees

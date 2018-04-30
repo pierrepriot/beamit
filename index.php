@@ -66,8 +66,10 @@ class BeamIt
 			foreach (glob('./conf/*.yml') as $filename) {
 				if (!preg_match('/global\.yml$/si', $filename)){
 					$oRel = (object)yaml_parse_file ($filename);
-					$oRel->slug = str_replace('.yml', '', basename($filename));
-					$this->conf->catalog[] = $oRel;	
+					if($oRel->released){
+						$oRel->slug = str_replace('.yml', '', basename($filename));
+						$this->conf->catalog[] = $oRel;	
+					}					
 				}
 				else{
 					$this->conf->label=(object)yaml_parse_file ($filename);
