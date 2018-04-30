@@ -1,27 +1,32 @@
 ---
-artist: An Early Bird
-release: Warning Signs
-img: img/warningsigns.jpg
+artist: Kingdom Of The Holy Sun
+release: At The Gates Of Dawn
+img: img/atthegatesofdawn.jpg
+released: true
 services:
+    - name: Vinyl
+      url: https://www.discogs.com/sell/release/8810953?ev=rb
     - name: Bandcamp
-      url: https://deadbees.bandcamp.com
+      url: https://kingdomoftheholysun.bandcamp.com/album/at-the-gates-of-dawn
     - name: Deezer
-      url: https://www.deezer.com/fr/album/59342682
+      url: https://www.deezer.com/en/album/13555797
     - name: Spotify
-      url: http://open.spotify.com/album/5D0oMkoPYmifmeDKTflMdp
+      url: https://open.spotify.com/album/6PWygNgpnmFItxs1LPeyyM?si=OiTw2J9MS3efcswHUnTcxw
     - name: Apple
-      url: https://geo.itunes.apple.com/fr/album/id1361251893?at=1l3v9Tx&app=itunes
+      url: https://itunes.apple.com/us/album/at-the-gates-of-dawn/1133191630
     - name: Youtube
-      url: https://www.youtube.com/watch?v=hcrXYzooJwo
+      url: https://www.youtube.com/watch?v=6XEHpJSS_OE
     - name: Amazon
-      url: https://www.amazon.com/Warning-Signs/dp/B07BK9M9HQ
+      url: https://www.amazon.com/Gates-Dawn-Kingdom-Holy-Sun/dp/B01IADJ4K0
+    - name: Google Play
+      url: https://play.google.com/store/music/album?id=B4wdm4zxcfpdcrq6eo7gxbtln34
 socials:
     - name: Facebook
-      url: https://www.facebook.com/anearlybirdmusic
+      url: https://www.facebook.com/kingdomoftheholysun/
     - name: Twitter
-      url: https://twitter.com/_anearlybird_
+      url: https://twitter.com/kingdomholysun
     - name: Instagram
-      url: https://www.instagram.com/anearlybirdofficial/
+      url: https://www.instagram.com/kingdomoftheholysun/
     - name: Youtube
-      url: https://www.youtube.com/channel/UCAW08x6aIjIBztf9u8chmHA
+      url: https://www.youtube.com/channel/UCdJoxu_bl5YJYyezwA51e1Q
 twitternic: deadbees
