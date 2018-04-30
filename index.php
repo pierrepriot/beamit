@@ -53,17 +53,33 @@ class BeamIt
 	private function setSlug(){
 		
 		$this->slug = preg_replace('/^([^\?]+).*/msi', '$1', basename($_SERVER['REQUEST_URI']));
+		if ($this->slug==''){
+			$this->slug='index';
+		}
 	}
 	
 	// matches the request URl with existing yaml conf file 
 	// and loads configuration 
 	private function loadConf(){		
-		
-		if(is_file('./conf/'.str_replace('.json', '', $this->slug).'.yml')){			
-			$this->yaml = './conf/'.str_replace('.json', '', $this->slug).'.yml';
-		}		
-		
-		$this->conf = (object)yaml_parse_file ($this->yaml);
+		if ($this->slug=='index'	|| $this->slug=='index.json'){ // home page, load all config files, or digest conf
+			$this->conf->catalog=array();
+			foreach (glob('./conf/*.yml') as $filename) {
+				if (!preg_match('/global\.yml$/si', $filename)){
+					$oRel = (object)yaml_parse_file ($filename);
+					$oRel->slug = str_replace('.yml', '', basename($filename));
+					$this->conf->catalog[] = $oRel;	
+				}
+				else{
+					$this->conf->label=(object)yaml_parse_file ($filename);
+				}
+			}
+		}
+		else{
+			if(is_file('./conf/'.str_replace('.json', '', $this->slug).'.yml')){			
+				$this->yaml = './conf/'.str_replace('.json', '', $this->slug).'.yml';
+			}	
+			$this->conf = (object)yaml_parse_file ($this->yaml);
+		}
 	}
 	
 	// sets base url depending on http/https protocol
@@ -77,31 +93,48 @@ class BeamIt
 	}
 	
 	// returns twig template depending on slug
-	public function getTemplate(){
-		
-		if (preg_match('/.+\.json$/si', $this->slug)){
-			return 'manifest.json';
+	public function getTemplate(){	
+		if($this->slug=='index.json'){
+			return 'index.json';
+		}
+		elseif (preg_match('/.+\.json$/si', $this->slug)){
+			return 'release.json';
+		}
+		elseif ($this->slug=='index'){
+			return 'index.html';
 		}
 		else{
-			return 'index.html';
+			return 'release.html';
 		}		
 	}
 	
 	// returns twig friendly var array
 	public function getConf(){
-		
-		$aTwigVars = array(
-			'tartebypass' => 'false',
-			'ogurl' => $this->conf->baseurl.$this->slug, 
-			'slug' => str_replace('.json', '', $this->slug), 
-			'artist' => $this->conf->artist, 
-			'release' => $this->conf->release, 
-			'img' => $this->conf->img, 
-			'services' => $this->conf->services, 
-			'socials' => $this->conf->socials, 
-			'twitternic' => $this->conf->twitternic, 
-			'baseurl' => $this->conf->baseurl
-		);		
+		if ($this->slug=='index'	||	$this->slug=='index.json'){ // home
+			$aTwigVars = array(
+				'tartebypass' => 'false',
+				'ogurl' => $this->conf->baseurl.$this->slug, 
+				'slug' => 'index',
+				'catalog' => $this->conf->catalog,
+				'label' => $this->conf->label,
+			);
+
+			
+		}
+		else{ // release pages + manifests
+			$aTwigVars = array(
+				'tartebypass' => 'false',
+				'ogurl' => $this->conf->baseurl.$this->slug, 
+				'slug' => str_replace('.json', '', $this->slug), 
+				'artist' => $this->conf->artist, 
+				'release' => $this->conf->release, 
+				'img' => $this->conf->img, 
+				'services' => $this->conf->services, 
+				'socials' => $this->conf->socials, 
+				'twitternic' => $this->conf->twitternic, 
+				'baseurl' => $this->conf->baseurl
+			);			
+		}
 		
 		if(function_exists('geoip_continent_code_by_name')){
 			$continent = geoip_continent_code_by_name($_SERVER['REMOTE_ADDR']);		

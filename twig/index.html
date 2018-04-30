@@ -6,21 +6,20 @@
     <meta name="theme-color" content="#3273dc">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    <title>{{artist}} - {{release}}</title>
+    <title>{{label.label}} releases</title>
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@{{twitternic}}">
-    <meta name="twitter:creator" content="@{{twitternic}}">
-    <meta name="twitter:title" content="{{artist}} - {{release}}">
-    <meta name="twitter:description" content="Get {{release}} by {{artist}} from your favorite service">
-    <meta name="twitter:image" content="{{baseurl}}{{img}}">
-    <meta property="og:title" content="{{release}}">
+    <meta name="twitter:site" content="@{{label.twitternic}}">
+    <meta name="twitter:creator" content="@{{label.twitternic}}">
+    <meta name="twitter:title" content="{{label.label}} releases">
+    <meta name="twitter:description" content="Get {{label.label}} music from your favorite service">
+    <meta name="twitter:image" content="{{baseurl}}{{label.img}}">
+    <meta property="og:title" content="{{label.label}} releases">
 	<meta property="og:type" content="music.album">
 	<meta property="og:url" content="{{ogurl}}">
-	<meta property="og:description" content="Get {{release}} by {{artist}} from your favorite service">
-	<meta property="og:image" content="{{baseurl}}{{img}}">
-    <meta property="music:album" content="{{release}}">
-    <meta property="music:musician" content="{{artist}}">
-	<link rel="image_src" href="{{baseurl}}{{img}}">
+	<meta property="og:description" content="Get {{label.label}} music from your favorite service">
+	<meta property="og:image" content="{{baseurl}}{{label.img}}">
+    <!-- <meta property="music:musician" content="{{artist}}"> -->
+	<link rel="image_src" href="{{baseurl}}{{label.img}}">
 	<link rel="manifest" href="/{{slug}}.json">
     <style>
 		a {
@@ -61,59 +60,28 @@
 <section class="hero is-dark is-bold">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title">{{artist}} - "{{release}}"</h1>
+            <h1 class="title">{{label.label}}</h1>
         </div>
     </div>
 </section>
 <section class="section">
     <div class="container">
-        <div class="columns">
-            <div class="column is-two-thirds">
-                <div class="panel">                    
-                    <div class="panel-block">
-                        <div class="content">
-                            <p>
-                               <img src="{{img}}"  alt="{{artist}} - {{release}}">                               
-                            </p>                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">  
-             <div class="panel">
-				<p class="panel-heading">
-				   Get <strong>"{{release}}"</strong> from your favorite service
-				</p>                  
-                            
-              {% for item in services %}             	
-                <div class="panel-block">
-					<div class="content is-medium">
-						<span class="icon"><i class="{{item.class}}"></i></span>
-                       
-                        <a href="{{item.url}}" class="is-info"> {{item.name}}</a>
-					</div>
-				</div>		
-				{% endfor %}        
-             </div>             
-             
-             <div class="panel">
-				<p class="panel-heading">
-				   Connect with <strong>{{artist}}</strong>
-				</p>                  
-                            
-              {% for item in socials %}             	
-                <div class="panel-block">
-					<div class="content is-medium">
-						<span class="icon"><i class="{{item.class}}"></i></span>
-                       
-                        <a href="{{item.url}}" class="is-info"> {{item.name}}</a>
-					</div>
-				</div>		
-				{% endfor %}        
-             </div>
-       </div>
+		{% for row in catalog|batch(4) %}
+		<div class="tile is-ancestor">  
+			{% for item in row %}  
+			<div class="tile is-3 is-parent">
+				<article class="tile is-child box">
+				<figure class="image ">
+					<a href="{{item.slug}}" class="is-info"><img src="{{item.img}}"  alt="{{item.artist}} - {{item.release}}"></a>
+				</figure>
+				<p class="title"><a href="{{item.slug}}" class="is-info">{{item.artist}}</a></p>
+				<p class="subtitle"><a href="{{item.slug}}" class="is-info">{{item.release}}</a></p>					
+				</article>
+			</div>
+			{% endfor %}    
+		</div>		
+		{% endfor %}
     </div>
-</div>
 </section>
 </body>
 </html>    
