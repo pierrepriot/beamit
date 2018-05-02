@@ -61,7 +61,7 @@ class BeamIt
 	// matches the request URl with existing yaml conf file 
 	// and loads configuration 
 	private function loadConf(){		
-		if ($this->slug=='index'	|| $this->slug=='index.json'){ // home page, load all config files, or digest conf
+		if ($this->slug=='index'	|| $this->slug=='index.json'	|| $this->slug=='sitemap.xml'){ // home page, load all config files, or digest conf
 			$this->conf->catalog=array();
 			foreach (glob('./conf/*.yml') as $filename) {
 				if (!preg_match('/global\.yml$/si', $filename)){
@@ -95,8 +95,11 @@ class BeamIt
 	}
 	
 	// returns twig template depending on slug
-	public function getTemplate(){	
-		if($this->slug=='index.json'){
+	public function getTemplate(){		
+		if($this->slug=='sitemap.xml'){
+			return 'sitemap.xml';
+		}
+		elseif($this->slug=='index.json'){
 			return 'index.json';
 		}
 		elseif (preg_match('/.+\.json$/si', $this->slug)){
@@ -112,13 +115,14 @@ class BeamIt
 	
 	// returns twig friendly var array
 	public function getConf(){
-		if ($this->slug=='index'	||	$this->slug=='index.json'){ // home
+		if ($this->slug=='index'	||	$this->slug=='index.json'	||	$this->slug=='sitemap.xml'){ // home
 			$aTwigVars = array(
 				'tartebypass' => 'false',
 				'ogurl' => $this->conf->baseurl.$this->slug, 
 				'slug' => 'index',
 				'catalog' => $this->conf->catalog,
 				'label' => $this->conf->label,
+				'baseurl' => $this->conf->baseurl
 			);
 
 			
