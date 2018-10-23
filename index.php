@@ -24,6 +24,7 @@ class BeamIt
 						'vinyl' =>  'fas fa-dot-circle',
 						'cd' =>  'far fa-dot-circle',		
 						'google play' => 'fab fa-google-play',
+						'tour dates' => 'fas fa-road',
 		);
 	
 	private $slug;
