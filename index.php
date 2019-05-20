@@ -10,7 +10,7 @@ class BeamIt
 	
 	// mapping array for services and font awesome css classes
 	private $classes = array(
-						'bandcamp' => 'fas fa-bold',
+						'bandcamp' => 'fab fa-bandcamp',
 						'apple' => 'fab fa-apple',
 						'spotify' => 'fab fa-spotify',
 						'deezer' => 'fas fa-signal',
