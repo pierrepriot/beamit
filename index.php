@@ -1,9 +1,10 @@
 <?php
+error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 
 class BeamIt
 {
     // main configuration storage object
-	private $conf; 
+	private $conf;
 	
 	// default/sample configuration file
 	private $yaml = './conf/conf.yml'; 
