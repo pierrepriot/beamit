@@ -44,17 +44,29 @@
 	<script type="text/javascript">
 	tarteaucitron.init({
 		"hashtag": "#tarteaucitron", /* Ouverture automatique du panel avec le hashtag */
-		"highPrivacy": true, /* désactiver le consentement implicite (en naviguant) ? */
+		"cookieName": "tarteaucitron", /* Cookie name */
+		"orientation": "middle", /* Banner position (top - bottom) */
 		"orientation": "top", /* le bandeau doit être en haut (top) ou en bas (bottom) ? */
 		"adblocker": false, /* Afficher un message si un adblocker est détecté */
 		"showAlertSmall": true, /* afficher le petit bandeau en bas à droite ? */
+		"showIcon": true, /* Show cookie icon to manage cookies */
+		"iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
 		"cookieslist": true, /* Afficher la liste des cookies installés ? */
+		"DenyAllCta" : true, /* Show the deny all button */
+		"AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
+        "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
+		"handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 		"removeCredit": false /* supprimer le lien vers la source ? */
+		"moreInfoLink": false, /* Show more info link */
+		"useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
+        "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
+		"readmoreLink": "", /* Change the default readmore link */
+        "mandatory": true, /* Show a message about mandatory cookies */
 	});
 	var tarteaucitronForceLanguage = 'en'; /* supported: fr, en, de, es, it, pt, pl, ru */
 	</script>	
 	<script type="text/javascript">
-		tarteaucitron.user.bypass = {{tartebypass}};		
+		//tarteaucitron.user.bypass = {{tartebypass}};		
         tarteaucitron.user.gtagUa = '';
         tarteaucitron.user.gtagMore = function () { /* add here your optionnal gtag() */ };
         (tarteaucitron.job = tarteaucitron.job || []).push('gtag');
